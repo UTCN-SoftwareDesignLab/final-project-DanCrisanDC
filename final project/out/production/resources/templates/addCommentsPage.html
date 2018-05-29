@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Comments Section</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="#" th:action="@{/addCommentsPage}" method="post">
+
+    <p><input type="submit" name = "backToMovies" value="Back to movies section" /></p>
+
+</form>
+
+<form action="#" th:action="@{/addCommentsPage}" method="get">
+
+    <p>Subject: <input type="text" field="${subject}" name="subject" id="subject" /></p>
+
+    <textarea rows="10" cols="50" type="text" field="${commentText}" name="commentText" id="commentText" ></textarea>
+
+    <p><input type="submit" name = "addComment" value="Add Comment" /></p>
+
+</form>
+
+<p th:text = "${message}" ></p>
+
+</body>
+</html>

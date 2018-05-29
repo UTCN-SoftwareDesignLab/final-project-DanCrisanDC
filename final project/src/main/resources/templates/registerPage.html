@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Register below:</h1>
+<form action="#" th:action="@{/registerPage}" th:object="${userDto}" method="post">
+
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+
+    <p>Username: <input type="text" th:field="*{username}" /></p>
+
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</p>
+
+    <p>Password: <input type="password" th:field="*{password}" /></p>
+
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</p>
+
+    <p>Key for account of type Critic:</p>
+    <p><input type="text" field="${key}" name="key" id="key" /></p>
+
+    <p><input type="submit" name = "register" value="Register" /></p>
+
+</form>
+
+<p th:text = "${message}" ></p>
+
+</body>
+</html>

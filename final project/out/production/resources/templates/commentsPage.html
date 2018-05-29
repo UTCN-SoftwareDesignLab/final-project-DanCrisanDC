@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Comments</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body style="overflow-x:auto">
+
+<h1>Comments section</h1>
+
+<form action="#" th:action="@{/commentsPage}" method="post">
+
+    <p><input type="submit" name = "backToMovies" value="Back to movies section" /></p>
+
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>TYPE</th>
+        <th>TITLE</th>
+        <th>USERNAME</th>
+        <th>COMMENT TEXT</th>
+        <th>VOTES</th>
+        <th>MOVIE TITLE</th>
+    </tr>
+    </thead>
+
+    <body>
+    <tr th:each = "commentDto : ${comments}">
+        <td align="center" th:text = "${commentDto.getType()}" ></td>
+        <td align="center" th:text = "${commentDto.getTitle()}" ></td>
+        <td align="center" th:text = "${commentDto.getName()}" ></td>
+        <td width="300 pixels" th:text = "${commentDto.getCommentText()}" ></td>
+        <td align="center" th:text = "${commentDto.getVotes()}" ></td>
+        <td align="center" th:text = "${commentDto.getMovie().getName()}" ></td>
+        <td>
+            <form action="#" th:action="@{/commentsPage}" method="get">
+                <input type="hidden" th:value = "${commentDto.getId()}" name="commentId" />
+                <input type="hidden" th:value = "${commentDto.getMovie().getId()}" name="cmovieId" />
+                <p><input type="submit" class="button" value="Upvote comment" name="upvote" />
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{/commentsPage}" method="get">
+                <input type="hidden" th:value = "${commentDto.getId()}" name="commentId" />
+                <input type="hidden" th:value = "${commentDto.getMovie().getId()}" name="cmovieId" />
+                <p><input type="submit" class="button" value="Downvote comment" name="downvote" />
+            </form>
+        </td>
+    </tr>
+
+    </body>
+</table>
+</body>
+</html>

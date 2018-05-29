@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movies</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body style="overflow-x:auto">
+
+<h1>Movies section</h1>
+
+<form action="#" th:action="@{/moviesPage}" th:object="${movieDto}" method="post">
+
+    <p> <input type="search" placeholder="Insert movie name" th:field="*{name}" /></p>
+
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+
+    <p><input type="submit" name = "search" value="Search movie" /></p>
+
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>GENRE</th>
+        <th>LAUNCH DATE</th>
+        <th>DURATION</th>
+        <th>DESCRIPTION</th>
+        <th>RATING</th>
+        <th>BUDGET</th>
+        <th>REVENUE</th>
+    </tr>
+    </thead>
+
+    <body>
+    <tr th:each = "movieDto : ${movies}">
+        <td align="center" th:text = "${movieDto.getId()}" ></td>
+        <td align="center" th:text = "${movieDto.getName()}" ></td>
+        <td align="center" th:text = "${movieDto.getGenre()}" ></td>
+        <td align="center" th:text = "${movieDto.getLaunchDate()}" ></td>
+        <td align="center" th:text = "${movieDto.getDuration()}" ></td>
+        <td th:text = "${movieDto.getDescription()}" ></td>
+        <td align="center" th:text = "${movieDto.getRating()}" ></td>
+        <td align="center" th:text = "${movieDto.getBudget()}" ></td>
+        <td align="center" th:text = "${movieDto.getRevenue()}" ></td>
+        <td>
+            <form action="#" th:action="@{/addReviewsPage}" method="get">
+                <input type="hidden" th:value = "${movieDto.getId()}" name="movieId" />
+                <p><input type="submit" class="button" value="Add Review" name="addReviews" />
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{/addCommentsPage}" method="get">
+                <input type="hidden" th:value = "${movieDto.getId()}" name="movieId" />
+                <p><input type="submit" class="button" value="Add Comment" name="addComments" />
+            </form>
+        </td>
+        <td>
+            <form action="#" th:action="@{/commentsPage}" method="get">
+                <input type="hidden" th:value = "${movieDto.getId()}" name="movieId" />
+                <p><input type="submit" class="button" value="View Comments" name="viewComments" />
+            </form>
+        </td>
+    </tr>
+
+    </body>
+</table>
+</body>
+</html>
